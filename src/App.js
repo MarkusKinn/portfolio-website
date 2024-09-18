@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import Timeline from './Timeline';
 import BlogOverview from './BlogOverview';
@@ -58,28 +58,97 @@ const SocialLink = ({ href, icon, name }) => (
 
 const ProjectItem = ({ title, description, technologies, link, image }) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [isHorizontallyExpanded, setIsHorizontallyExpanded] = useState(false);
+    const [isVerticallyExpanded, setIsVerticallyExpanded] = useState(false);
+    const [showContent, setShowContent] = useState(false);
+    const contentRef = useRef(null);
+
+    useEffect(() => {
+        let timer1, timer2, timer3;
+        if (isExpanded) {
+            // Opening sequence
+            setIsHorizontallyExpanded(true);
+            timer1 = setTimeout(() => {
+                setIsVerticallyExpanded(true);
+            }, 300); // Start vertical expansion after 300ms
+            timer2 = setTimeout(() => {
+                setShowContent(true);
+            }, 600); // Show content after vertical expansion is complete
+        } else {
+            // Closing sequence
+            setShowContent(false);
+            timer1 = setTimeout(() => {
+                setIsVerticallyExpanded(false);
+            }, 50); // Start vertical collapse almost immediately
+            timer2 = setTimeout(() => {
+                setIsHorizontallyExpanded(false);
+            }, 350); // Start horizontal collapse after vertical collapse is mostly done
+        }
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            clearTimeout(timer3);
+        };
+    }, [isExpanded]);
+
+    const handleClick = () => {
+        setIsExpanded(!isExpanded);
+    };
 
     return (
-        <div className={`mb-6 border rounded-lg overflow-hidden transition-all duration-300 ${isExpanded ? 'col-span-2' : ''}`}>
-            <div
-                className="cursor-pointer p-4"
-                onClick={() => setIsExpanded(!isExpanded)}
-            >
-                <h3 className="text-xl font-normal text-gray-900 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400">
+        <div
+            className={`mb-6 border rounded-lg overflow-hidden cursor-pointer
+                transition-all duration-300 ease-in-out
+                ${isExpanded ? 'shadow-lg' : 'shadow hover:shadow-md'}
+            `}
+            style={{
+                gridColumn: isHorizontallyExpanded ? 'span 2 / span 2' : 'span 1 / span 1',
+                transition: 'all 0.3s ease-in-out, grid-column 0.3s ease-in-out',
+            }}
+            onClick={handleClick}
+        >
+            <div className="p-4">
+                <h3 className="text-xl font-normal text-gray-900 dark:text-gray-200 transition-colors duration-300">
                     {title}
                 </h3>
-                {isExpanded && (
-                    <div className="mt-4">
-                        <p className="text-sm text-gray-800 dark:text-gray-400 mb-2">{description}</p>
-                        <p className="text-sm text-gray-700 dark:text-gray-500 mb-2">
-                            Technologies: {technologies.join(', ')}
-                        </p>
+                <div
+                    ref={contentRef}
+                    className={`mt-4 overflow-hidden
+                        transition-[max-height] duration-500 ease-in-out
+                        ${isVerticallyExpanded ? 'max-h-96' : 'max-h-0'}
+                    `}
+                    style={{
+                        transitionTimingFunction: isVerticallyExpanded ? 'cubic-bezier(0.4, 0, 0.2, 1)' : 'cubic-bezier(0.6, 0.04, 0.98, 0.335)',
+                    }}
+                >
+                    <div className={`transition-opacity duration-300 ease-in-out ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+                        {showContent && (
+                            <>
+                                <p className="text-sm text-gray-800 dark:text-gray-400 mb-2">{description}</p>
+                                <p className="text-sm text-gray-700 dark:text-gray-500 mb-2">
+                                    Technologies: {technologies.join(', ')}
+                                </p>
+                                {link && (
+                                    <a
+                                        href={link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-500 hover:underline"
+                                        onClick={(e) => e.stopPropagation()} // Prevent item collapse when clicking the link
+                                    >
+                                        View Project
+                                    </a>
+                                )}
+                            </>
+                        )}
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );
 };
+
+
 
 const ProjectsSection = ({ children }) => (
     <div className="w-full py-16">
@@ -100,7 +169,7 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
             <header className="mb-16 border-b pb-8 dark:border-gray-700">
                 <div className="flex items-center mb-6">
                     <img
-                        src="../public/profile-picture.jpg"
+                        src="/profile-picture.jpg"
                         alt="Markus Kinn"
                         className="w-24 h-24 rounded-full mr-6 object-cover"
                     />
@@ -126,7 +195,7 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                         />
                     </div>
                     <a
-                        href={`/markus_kinn_resume.pdf`}
+                        href={`/CV-Markus.pdf`}
                         download
                         className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
                     >
@@ -252,12 +321,6 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                 </p>
             </Section>
 
-            {showTimeline && (
-                <Section title="Academic Timeline">
-                    <Timeline/>
-                </Section>
-            )}
-
             <Section title="Skills/ Buzzwords">
                 <div className="space-y-4">
                     <div>
@@ -270,6 +333,11 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                     </div>
                 </div>
             </Section>
+            {showTimeline && (
+                <Section title="Academic Timeline">
+                    <Timeline/>
+                </Section>
+            )}
         </div>
     );
 }
@@ -295,7 +363,11 @@ function Navigation() {
 }
 
 function App() {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(() => {
+        // Initialize darkMode state from localStorage, defaulting to false if not set
+        const savedMode = localStorage.getItem('darkMode');
+        return savedMode !== null ? JSON.parse(savedMode) : false;
+    });
     const [showTimeline, setShowTimeline] = useState(false);
     const [fadeIn, setFadeIn] = useState(false);
 
@@ -305,6 +377,8 @@ function App() {
         } else {
             document.documentElement.classList.remove('dark');
         }
+        // Save the current preference to localStorage
+        localStorage.setItem('darkMode', JSON.stringify(darkMode));
     }, [darkMode]);
 
     useEffect(() => {
@@ -312,12 +386,16 @@ function App() {
         return () => clearTimeout(timer);
     }, []);
 
+    const toggleDarkMode = () => {
+        setDarkMode(prevMode => !prevMode);
+    };
+
     return (
         <Router>
             <div className={`min-h-screen py-16 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'} transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
                 <Navigation />
                 <button
-                    onClick={() => setDarkMode(!darkMode)}
+                    onClick={toggleDarkMode}
                     className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition duration-300"
                 >
                     {darkMode ? '🌞' : '🌙'}
