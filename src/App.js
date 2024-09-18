@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import Timeline from './Timeline';
+import BlogOverview from './BlogOverview';
+import BlogPost from './BlogPost';
+import BlogList from './BlogList';
+
 
 const Section = ({ title, children }) => (
     <div className="mb-16">
@@ -89,153 +94,125 @@ const ProjectsSection = ({ children }) => (
     </div>
 );
 
-function App() {
-    const [darkMode, setDarkMode] = useState(false);
-    const [showTimeline, setShowTimeline] = useState(false);
-
-    useEffect(() => {
-        if (darkMode) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, [darkMode]);
-
+function CV({ darkMode, showTimeline, setShowTimeline }) {
     return (
-        <div className={`min-h-screen py-16 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
-            <div className="container mx-auto px-4 max-w-5xl">
-                <button
-                    onClick={() => setDarkMode(!darkMode)}
-                    className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white"
-                >
-                    {darkMode ? '🌞' : '🌙'}
-                </button>
-                <button
-                    onClick={() => setShowTimeline(!showTimeline)}
-                    className="fixed top-20 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white"
-                >
-                    {showTimeline ? '📅' : '🗓️'}
-                </button>
-                <header className="mb-16 border-b pb-8 dark:border-gray-700">
-                    <div className="flex items-center mb-6">
-                        <img
-                            src="../public/profile-picture.jpg"
-                            alt="Markus Kinn"
-                            className="w-24 h-24 rounded-full mr-6 object-cover"
+        <div className="container mx-auto px-4 max-w-5xl">
+            <header className="mb-16 border-b pb-8 dark:border-gray-700">
+                <div className="flex items-center mb-6">
+                    <img
+                        src="../public/profile-picture.jpg"
+                        alt="Markus Kinn"
+                        className="w-24 h-24 rounded-full mr-6 object-cover"
+                    />
+                    <div>
+                        <h1 className="text-4xl font-light mb-2 text-gray-900 dark:text-white">Markus Kinn</h1>
+                        <p className="text-xl text-gray-700 dark:text-gray-300">Master's Student in Informatics (AI)
+                            | Software Engineer</p>
+                    </div>
+                </div>
+                <p className="text-sm text-gray-700 dark:text-gray-400 mb-4">Trondheim, Norway |
+                    markus.kinn@gmail.com | +47 473 41 615</p>
+                <div className="flex items-center justify-between">
+                    <div className="flex space-x-4">
+                        <SocialLink
+                            href="https://www.linkedin.com/in/markuskinn/"
+                            icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linkedin.svg"
+                            name="LinkedIn"
                         />
-                        <div>
-                            <h1 className="text-4xl font-light mb-2 text-gray-900 dark:text-white">Markus Kinn</h1>
-                            <p className="text-xl text-gray-700 dark:text-gray-300">Master's Student in Informatics (AI)
-                                | Software Engineer</p>
-                        </div>
+                        <SocialLink
+                            href="https://github.com/Markuski2023"
+                            icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg"
+                            name="GitHub"
+                        />
                     </div>
-                    <p className="text-sm text-gray-700 dark:text-gray-400 mb-4">Trondheim, Norway |
-                        markus.kinn@gmail.com | +47 473 41 615</p>
-                    <div className="flex items-center justify-between">
-                        <div className="flex space-x-4">
-                            <SocialLink
-                                href="https://www.linkedin.com/in/markuskinn/"
-                                icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linkedin.svg"
-                                name="LinkedIn"
-                            />
-                            <SocialLink
-                                href="https://github.com/Markuski2023"
-                                icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg"
-                                name="GitHub"
-                            />
-                        </div>
-                        <a
-                            href={`/markus_kinn_resume.pdf`}
-                            download
-                            className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-                        >
-                            Download Resume
-                        </a>
+                    <a
+                        href={`/markus_kinn_resume.pdf`}
+                        download
+                        className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                    >
+                        Download Resume
+                    </a>
+                </div>
+            </header>
+
+            <Section title="Experience">
+                <ExperienceItem
+                    title="Chief Engineer"
+                    company="Ascend NTNU"
+                    date="April 2024 - Present"
+                    description={[
+                        "Responsible for overseeing four technical groups",
+                        "Coordinate efforts of 28 engineers to ensure seamless integration of work on autonomous drones",
+                        "Worked closely with Deputy Chief Engineer to set strategic goals, manage project timelines, and maintain high standards of technical excellence"
+                    ]}
+                    technologies={[]}
+                />
+                <ExperienceItem
+                    title="Software Engineer"
+                    company="Systek"
+                    date="Jun 2024 - Aug 2024"
+                    description={[
+                        "Worked as a consultant with a group of three students",
+                        "Created an AR Configuration System for Christmas trees (oil and gas type) using Unity, C# and Meta Quest 3",
+                        "Configuration System simplified the process and reduced errors compared to traditional methods"
+                    ]}
+                    technologies={["Unity", "C#", "Git", "GitHub", "Meta Quest 3"]}
+                />
+                <ExperienceItem
+                    title="Perception Engineer"
+                    company="Ascend NTNU"
+                    date="Sep 2023 - Aug 2024"
+                    description={[
+                        "Member of the Perception team, transforming sensor input into valuable insights about the drone's surroundings",
+                        "Worked with technologies including custom deep learning models, fine-tuned existing models, synthetic data generation, ROS2, sensors, and Nvidia Jetson Orin NX"
+                    ]}
+                    technologies={["Python", "C++", "Deep learning", "Pytorch", "Ultralytics", "Blender", "ROS2", "OpenCV", "Linux", "CAD"]}
+                />
+                <ExperienceItem
+                    title="Machine Learning Intern"
+                    company="Europris"
+                    date="Aug 2022 - Dec 2022"
+                    description={[
+                        "Worked with various machine learning algorithms focused on Time Series Data",
+                        "Practiced data preprocessing techniques, understanding the importance of cleaning and preparing data for robust model training"
+                    ]}
+                    technologies={["Machine learning", "Databricks", "Data preprocessing", "Python", "SQL", "Git", "GitHub"]}
+                />
+            </Section>
+
+            <Section title="Education">
+                <ExperienceItem
+                    title="Master of Science in Informatics - Artificial Intelligence"
+                    company="NTNU - Trondheim"
+                    date="Aug 2023 - Jun 2025"
+                    description={[]}
+                />
+                <ExperienceItem
+                    title="Bachelor of Computer Science - Machine Learning"
+                    company="Østfold University College"
+                    date="Aug 2020 - Jun 2023"
+                    description={[]}
+                />
+                <ExperienceItem
+                    title="High School"
+                    company="Hans Nilsen Hauge VGs"
+                    date="Aug 2017 - Jun 2020"
+                    description={[]}
+                />
+            </Section>
+
+            <Section title="Skills">
+                <div className="space-y-4">
+                    <div>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming Languages</h3>
+                        <SkillList skills={["Python", "SQL", "C#", "C++"]}/>
                     </div>
-                </header>
-
-                <Section title="Experience">
-                    <ExperienceItem
-                        title="Chief Engineer"
-                        company="Ascend NTNU"
-                        date="April 2024 - Present"
-                        description={[
-                            "Responsible for overseeing four technical groups",
-                            "Coordinate efforts of 28 engineers to ensure seamless integration of work on autonomous drones",
-                            "Worked closely with Deputy Chief Engineer to set strategic goals, manage project timelines, and maintain high standards of technical excellence"
-                        ]}
-                        technologies={[]}
-                    />
-                    <ExperienceItem
-                        title="Software Engineer"
-                        company="Systek"
-                        date="Jun 2024 - Aug 2024"
-                        description={[
-                            "Worked as a consultant with a group of three students",
-                            "Created an AR Configuration System for Christmas trees (oil and gas type) using Unity, C# and Meta Quest 3",
-                            "Configuration System simplified the process and reduced errors compared to traditional methods"
-                        ]}
-                        technologies={["Unity", "C#", "Git", "GitHub", "Meta Quest 3"]}
-                    />
-                    <ExperienceItem
-                        title="Perception Engineer"
-                        company="Ascend NTNU"
-                        date="Sep 2023 - Aug 2024"
-                        description={[
-                            "Member of the Perception team, transforming sensor input into valuable insights about the drone's surroundings",
-                            "Worked with technologies including custom deep learning models, fine-tuned existing models, synthetic data generation, ROS2, sensors, and Nvidia Jetson Orin NX"
-                        ]}
-                        technologies={["Python", "C++", "Deep learning", "Pytorch", "Ultralytics", "Blender", "ROS2", "OpenCV", "Linux", "CAD"]}
-                    />
-                    <ExperienceItem
-                        title="Machine Learning Intern"
-                        company="Europris"
-                        date="Aug 2022 - Dec 2022"
-                        description={[
-                            "Worked with various machine learning algorithms focused on Time Series Data",
-                            "Practiced data preprocessing techniques, understanding the importance of cleaning and preparing data for robust model training"
-                        ]}
-                        technologies={["Machine learning", "Databricks", "Data preprocessing", "Python", "SQL", "Git", "GitHub"]}
-                    />
-                </Section>
-
-                <Section title="Education">
-                    <ExperienceItem
-                        title="Master of Science in Informatics - Artificial Intelligence"
-                        company="NTNU - Trondheim"
-                        date="Aug 2023 - Jun 2025"
-                        description={[]}
-                    />
-                    <ExperienceItem
-                        title="Bachelor of Computer Science - Machine Learning"
-                        company="Østfold University College"
-                        date="Aug 2020 - Jun 2023"
-                        description={[]}
-                    />
-                    <ExperienceItem
-                        title="High School"
-                        company="Hans Nilsen Hauge VGs"
-                        date="Aug 2017 - Jun 2020"
-                        description={[]}
-                    />
-                </Section>
-
-                <Section title="Skills">
-                    <div className="space-y-4">
-                        <div>
-                            <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming
-                                Languages</h3>
-                            <SkillList skills={["Python", "SQL", "C#", "C++"]}/>
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Tools &
-                                Technologies</h3>
-                            <SkillList
-                                skills={["Deep learning", "Machine learning", "Pytorch(Lightning)", "Git, Github", "Unity"]}/>
-                        </div>
+                    <div>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Tools & Technologies</h3>
+                        <SkillList skills={["Deep learning", "Machine learning", "Pytorch(Lightning)", "Git, Github", "Unity"]}/>
                     </div>
-                </Section>
-            </div>
+                </div>
+            </Section>
 
             <ProjectsSection>
                 <ProjectItem
@@ -281,17 +258,99 @@ function App() {
                     image={`/deep-learning-framework.jpg`}
                 />
             </ProjectsSection>
+
             <Section title="References">
                 <p className="mb-6 text-gray-700 dark:text-gray-300">
                     References will be provided upon request.
                 </p>
             </Section>
+
             {showTimeline && (
                 <Section title="Academic Timeline">
                     <Timeline/>
                 </Section>
             )}
         </div>
+    );
+}
+
+function Navigation() {
+    const location = useLocation();
+    const isBlogPost = location.pathname.startsWith('/blog/') && location.pathname !== '/blog';
+
+    return (
+        <div className="fixed top-4 left-4 space-x-2">
+            {location.pathname !== '/' && (
+                <Link to="/" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded transition duration-300">
+                    CV
+                </Link>
+            )}
+            {location.pathname !== '/blog' && !isBlogPost && (
+                <Link to="/blog" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded transition duration-300">
+                    Blog
+                </Link>
+            )}
+        </div>
+    );
+}
+
+function App() {
+    const [darkMode, setDarkMode] = useState(false);
+    const [showTimeline, setShowTimeline] = useState(false);
+    const [fadeIn, setFadeIn] = useState(false);
+
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [darkMode]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setFadeIn(true), 100);
+        return () => clearTimeout(timer);
+    }, []);
+
+    return (
+        <Router>
+            <div className={`min-h-screen py-16 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'} transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
+                <Navigation />
+                <button
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition duration-300"
+                >
+                    {darkMode ? '🌞' : '🌙'}
+                </button>
+                <button
+                    onClick={() => setShowTimeline(!showTimeline)}
+                    className="fixed top-20 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition duration-300"
+                >
+                    {showTimeline ? '📅' : '🗓️'}
+                </button>
+                <Routes>
+                    <Route path="/" element={<CV darkMode={darkMode} showTimeline={showTimeline} setShowTimeline={setShowTimeline} />} />
+                    <Route path="/blog" element={<BlogOverview />} />
+                    <Route path="/blog/:id" element={<BlogPost />} />
+                </Routes>
+            </div>
+        </Router>
+    );
+
+    return (
+        <Router>
+            <div className="min-h-screen py-16 bg-white text-gray-900">
+                <nav className="fixed top-4 left-4 space-x-2">
+                    <Link to="/" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">CV</Link>
+                    <Link to="/blog" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">Blog</Link>
+                </nav>
+                <Routes>
+                    <Route path="/" element={<CV />} />
+                    <Route path="/blog" element={<BlogList />} />
+                    <Route path="/blog/:id" element={<BlogPost />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
