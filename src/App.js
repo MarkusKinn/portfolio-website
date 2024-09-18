@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react
 import Timeline from './Timeline';
 import BlogOverview from './BlogOverview';
 import BlogPost from './BlogPost';
-import BlogList from './BlogList';
 
 
 const Section = ({ title, children }) => (
