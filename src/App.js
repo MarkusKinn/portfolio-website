@@ -323,12 +323,37 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
             <Section title="Skills/ Buzzwords">
                 <div className="space-y-4">
                     <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming Languages</h3>
-                        <SkillList skills={["Python", "SQL", "C#", "C++"]}/>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming
+                            Languages</h3>
+                        <SkillList skills={["Python", "C++", "C#", "SQL", "Java", "HTML/CSS"]}/>
                     </div>
                     <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Tools & Technologies</h3>
-                        <SkillList skills={["Deep learning", "Machine learning", "Pytorch(Lightning)", "Git, Github", "Unity"]}/>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Machine Learning /
+                            AI</h3>
+                        <SkillList
+                            skills={["Deep Learning", "Computer Vision", "Natural Language Processing", "Reinforcement Learning", "PyTorch", "Neural Networks", "Convolutional Neural Networks (CNN)", "Recurrent Neural Networks (RNN)", "Generative Adversarial Networks (GAN)", "Generative Pretrained Transformers (GPT)"]}/>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Data Science</h3>
+                        <SkillList
+                            skills={["Data Analysis", "Data Visualization", "Time Series Analysis", "Pandas", "NumPy", "Matplotlib"]}/>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Software
+                            Development</h3>
+                        <SkillList
+                            skills={["Git", "GitHub", "Agile Methodologies", "Object-Oriented Programming (OOP)", "RESTful APIs", "Software Testing"]}/>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Tools &
+                            Technologies</h3>
+                        <SkillList
+                            skills={["Unity", "ROS2", "OpenCV", "Linux", "Databricks", "Jupyter Notebooks", "Nvidia Jetson", "Meta Quest 3", "Augmented Reality (AR)", "CAD"]}/>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Soft Skills</h3>
+                        <SkillList
+                            skills={["Team Leadership", "Project Management", "Technical Writing", "Problem Solving", "Collaboration", "Communication"]}/>
                     </div>
                 </div>
             </Section>
@@ -348,12 +373,14 @@ function Navigation() {
     return (
         <div className="fixed top-4 left-4 space-x-2">
             {location.pathname !== '/' && (
-                <Link to="/" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded transition duration-300">
+                <Link to="/"
+                      className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded transition duration-300">
                     CV
                 </Link>
             )}
             {location.pathname !== '/blog' && !isBlogPost && (
-                <Link to="/blog" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded transition duration-300">
+                <Link to="/blog"
+                      className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded transition duration-300">
                     Blog
                 </Link>
             )}
@@ -391,8 +418,9 @@ function App() {
 
     return (
         <Router>
-            <div className={`min-h-screen py-16 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'} transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
-                <Navigation />
+            <div
+                className={`min-h-screen py-16 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'} transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
+                <Navigation/>
                 <button
                     onClick={toggleDarkMode}
                     className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition duration-300"
