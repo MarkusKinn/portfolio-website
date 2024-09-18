@@ -145,7 +145,7 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                         "Coordinate efforts of 28 engineers to ensure seamless integration of work on autonomous drones",
                         "Worked closely with Deputy Chief Engineer to set strategic goals, manage project timelines, and maintain high standards of technical excellence"
                     ]}
-                    technologies={[]}
+                    technologies={["Team leadership", "Strategic planning", "Project management", "Technical oversight", "Coordination"]}
                 />
                 <ExperienceItem
                     title="Software Engineer"
@@ -199,19 +199,6 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                     date="Aug 2017 - Jun 2020"
                     description={[]}
                 />
-            </Section>
-
-            <Section title="Skills">
-                <div className="space-y-4">
-                    <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming Languages</h3>
-                        <SkillList skills={["Python", "SQL", "C#", "C++"]}/>
-                    </div>
-                    <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Tools & Technologies</h3>
-                        <SkillList skills={["Deep learning", "Machine learning", "Pytorch(Lightning)", "Git, Github", "Unity"]}/>
-                    </div>
-                </div>
             </Section>
 
             <ProjectsSection>
@@ -270,6 +257,19 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                     <Timeline/>
                 </Section>
             )}
+
+            <Section title="Skills/ Buzzwords">
+                <div className="space-y-4">
+                    <div>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming Languages</h3>
+                        <SkillList skills={["Python", "SQL", "C#", "C++"]}/>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Tools & Technologies</h3>
+                        <SkillList skills={["Deep learning", "Machine learning", "Pytorch(Lightning)", "Git, Github", "Unity"]}/>
+                    </div>
+                </div>
+            </Section>
         </div>
     );
 }
