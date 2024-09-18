@@ -336,22 +336,6 @@ function App() {
             </div>
         </Router>
     );
-
-    return (
-        <Router>
-            <div className="min-h-screen py-16 bg-white text-gray-900">
-                <nav className="fixed top-4 left-4 space-x-2">
-                    <Link to="/" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">CV</Link>
-                    <Link to="/blog" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">Blog</Link>
-                </nav>
-                <Routes>
-                    <Route path="/" element={<CV />} />
-                    <Route path="/blog" element={<BlogList />} />
-                    <Route path="/blog/:id" element={<BlogPost />} />
-                </Routes>
-            </div>
-        </Router>
-    );
 }
 
 export default App;
