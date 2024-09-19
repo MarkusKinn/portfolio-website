@@ -175,7 +175,7 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                     <div>
                         <h1 className="text-4xl font-light mb-2 text-gray-900 dark:text-white">Markus Kinn</h1>
                         <p className="text-xl text-gray-700 dark:text-gray-300">Master's Student in Informatics (AI)
-                            | Software Engineer</p>
+                            | Machine learning & Software Engineer</p>
                     </div>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-400 mb-4">Trondheim, Norway |
@@ -331,7 +331,7 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                         <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Machine Learning /
                             AI</h3>
                         <SkillList
-                            skills={["Deep Learning", "Computer Vision", "Natural Language Processing", "Reinforcement Learning", "PyTorch", "Neural Networks", "Convolutional Neural Networks (CNN)", "Recurrent Neural Networks (RNN)", "Generative Adversarial Networks (GAN)", "Generative Pretrained Transformers (GPT)"]}/>
+                            skills={["Deep Learning", "Computer Vision", "Reinforcement Learning", "PyTorch", "Neural Networks", "Convolutional Neural Networks (CNN)", "Recurrent Neural Networks (RNN)", "Generative Adversarial Networks (GAN)", "Generative Pretrained Transformers (GPT)/ LLMs"]}/>
                     </div>
                     <div>
                         <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Data Science</h3>
