@@ -5,24 +5,27 @@ import BlogOverview from './BlogOverview';
 import BlogPost from './BlogPost';
 
 
-const Section = ({ title, children }) => (
-    <div className="mb-16">
+const Section = React.forwardRef(({ title, children }, ref) => (
+    <div ref={ref} className="mb-16">
         <h2 className="text-2xl font-light mb-6 text-gray-900 dark:text-gray-200 uppercase tracking-wider">
             {title}
         </h2>
         {children}
     </div>
-);
+));
 
-const ExperienceItem = ({ title, company, date, description, technologies }) => (
+const ExperienceItem = ({ title, company, date, overview, highlights, technologies }) => (
     <div className="mb-8">
         <h3 className="text-xl font-normal text-gray-900 dark:text-gray-200">{title}</h3>
         <p className="text-sm text-gray-700 dark:text-gray-400 mb-2">{company} | {date}</p>
-        <ul className="list-disc list-inside text-gray-800 dark:text-gray-300 text-sm mb-2">
-            {description.map((item, index) => (
-                <li key={index} className="mb-1">{item}</li>
-            ))}
-        </ul>
+        {overview && <p className="text-gray-800 dark:text-gray-300 text-sm mb-2">{overview}</p>}
+        {highlights && highlights.length > 0 && (
+            <ul className="list-disc list-inside text-gray-800 dark:text-gray-300 text-sm mb-2">
+                {highlights.map((item, index) => (
+                    <li key={index} className="mb-1">{item}</li>
+                ))}
+            </ul>
+        )}
         {technologies && technologies.length > 0 && (
             <div className="mt-2">
                 <ul className="flex flex-wrap gap-2 mt-1">
@@ -55,7 +58,7 @@ const SocialLink = ({ href, icon, name }) => (
     </a>
 );
 
-const ProjectItem = ({ title, description, technologies, link, image }) => {
+const ProjectItem = ({ title, description, technologies, link, image, confidential = false }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isHorizontallyExpanded, setIsHorizontallyExpanded] = useState(false);
     const [isVerticallyExpanded, setIsVerticallyExpanded] = useState(false);
@@ -127,7 +130,9 @@ const ProjectItem = ({ title, description, technologies, link, image }) => {
                                 <p className="text-sm text-gray-700 dark:text-gray-500 mb-2">
                                     Technologies: {technologies.join(', ')}
                                 </p>
-                                {link && (
+                                {confidential ? (
+                                    <p className="text-sm text-red-600 font-semibold">Confidential</p>
+                                ) : link ? (
                                     <a
                                         href={link}
                                         target="_blank"
@@ -137,7 +142,7 @@ const ProjectItem = ({ title, description, technologies, link, image }) => {
                                     >
                                         View Project
                                     </a>
-                                )}
+                                ) : null}
                             </>
                         )}
                     </div>
@@ -146,8 +151,6 @@ const ProjectItem = ({ title, description, technologies, link, image }) => {
         </div>
     );
 };
-
-
 
 const ProjectsSection = ({ children }) => (
     <div className="w-full py-16">
@@ -162,7 +165,8 @@ const ProjectsSection = ({ children }) => (
     </div>
 );
 
-function CV({ darkMode, showTimeline, setShowTimeline }) {
+
+function CV({ darkMode, showTimeline, setShowTimeline, timelineSectionRef  }) {
     return (
         <div className="container mx-auto px-4 max-w-5xl">
             <header className="mb-16 border-b pb-8 dark:border-gray-700">
@@ -208,43 +212,51 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                     title="Chief Engineer"
                     company="Ascend NTNU"
                     date="April 2024 - Present"
-                    description={[
-                        "Responsible for overseeing four technical groups",
-                        "Coordinate efforts of 28 engineers to ensure seamless integration of work on autonomous drones",
-                        "Worked closely with Deputy Chief Engineer to set strategic goals, manage project timelines, and maintain high standards of technical excellence"
+                    overview="Lead four technical groups in the development of autonomous drones, overseeing a team of 28 engineers in a cutting-edge student organization focused on aerial robotics. Responsible for driving innovation, ensuring technical excellence, and fostering collaboration across multidisciplinary teams to achieve ambitious project goals."
+                    highlights={[
+                        "Coordinate efforts across technical groups to ensure seamless integration of work on autonomous drones",
+                        "Set strategic goals and manage project timelines in collaboration with the Deputy Chief Engineer",
+                        "Maintain high standards of technical excellence across all projects and teams",
+                        "Represent Ascend NTNU in technical discussions with sponsors and at international competitions"
                     ]}
-                    technologies={["Team leadership", "Strategic planning", "Project management", "Technical oversight", "Coordination"]}
+                    technologies={["Team leadership", "Strategic planning", "Project management", "Technical oversight", "Coordination", "Agile methodologies", "Autonomous systems"]}
                 />
                 <ExperienceItem
                     title="Software Engineer"
                     company="Systek"
                     date="Jun 2024 - Aug 2024"
-                    description={[
-                        "Worked as a consultant with a group of three students",
-                        "Created an AR Configuration System for Christmas trees (oil and gas type) using Unity, C# and Meta Quest 3",
-                        "Configuration System simplified the process and reduced errors compared to traditional methods"
+                    overview="Worked as a consultant in a team of three students to develop an innovative AR Configuration System for oil and gas Christmas trees, utilizing Unity, C#, and Meta Quest 3 technologies. This project aimed to shorten the configuration process in the oil and gas industry by leveraging AR capabilities."
+                    highlights={[
+                        "Created an AR Configuration System that significantly simplified the process and reduced errors compared to traditional methods",
+                        "Collaborated effectively within a small team to deliver a complex project within a tight summer internship timeframe",
+                        "Applied AR technologies to solve real-world industrial challenges in the oil and gas sector",
                     ]}
-                    technologies={["Unity", "C#", "Git", "GitHub", "Meta Quest 3"]}
+                    technologies={["Unity", "C#", "Git", "GitHub", "Meta Quest 3", "AR Development", "3D Modeling", "UI/UX Design"]}
                 />
                 <ExperienceItem
                     title="Perception Engineer"
                     company="Ascend NTNU"
                     date="Sep 2023 - Aug 2024"
-                    description={[
-                        "Member of the Perception team, transforming sensor input into valuable insights about the drone's surroundings",
-                        "Worked with technologies including custom deep learning models, fine-tuned existing models, synthetic data generation, ROS2, sensors, and Nvidia Jetson Orin NX"
+                    overview="Served as a member of the Perception team, focusing on transforming sensor input into valuable insights about the drone's surroundings for autonomous navigation and decision-making. Played a crucial role in developing advanced computer vision algorithms and integrating various sensors to enhance the drone's situational awareness."
+                    highlights={[
+                        "Developed and fine-tuned custom deep learning models for real-time object detection and classification",
+                        "Implemented synthetic data generation techniques to enhance model training and performance",
+                        "Worked extensively with ROS2, various sensors, and Nvidia Jetson Orin NX for efficient on-board processing",
+                        "Optimized perception algorithms to meet strict real-time performance requirements on embedded systems",
                     ]}
-                    technologies={["Python", "C++", "Deep learning", "Pytorch", "Ultralytics", "Blender", "ROS2", "OpenCV", "Linux", "CAD"]}
+                    technologies={["Python", "C++", "Deep learning", "PyTorch", "Ultralytics", "Blender", "ROS2", "OpenCV", "Linux", "CAD", "Sensor fusion", "Embedded systems"]}
                 />
                 <ExperienceItem
                     title="Machine Learning Intern"
                     company="Europris"
                     date="Aug 2022 - Dec 2022"
-                    description={[
-                        "Worked with various machine learning algorithms focused on Time Series Data",
-                        "Practiced data preprocessing techniques, understanding the importance of cleaning and preparing data for robust model training"
+                    overview="Engaged in an internship focused on applying machine learning techniques to time series data, contributing to data-driven decision making processes within the company. Worked on projects aimed at improving inventory management and sales forecasting through advanced data analysis and predictive modeling."
+                    highlights={[
+                        "Worked with various machine learning algorithms specialized for time series data analysis",
+                        "Conducted extensive data preprocessing, cleaning, and preparation to ensure robust model training",
+                        "Utilized Databricks platform for efficient large-scale data processing and model deployment",
                     ]}
-                    technologies={["Machine learning", "Databricks", "Data preprocessing", "Python", "SQL", "Git", "GitHub"]}
+                    technologies={["Machine learning", "Databricks", "Data preprocessing", "Python", "SQL", "Git", "GitHub", "Time series analysis", "Data visualization"]}
                 />
             </Section>
 
@@ -276,6 +288,7 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                     technologies={['Computer Vision', 'Machine Learning', 'Python', 'OpenCV', 'Pytorch']}
                     link="https://github.com/yourusername/fod-detection-project"
                     image={`/fod-detection-project.jpg`}
+                    confidential={true}
                 />
                 <ProjectItem
                     title="YOLOv3 Implementation from Scratch"
@@ -295,8 +308,8 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                     title="AR Configuration System for Oil & Gas Christmas Trees"
                     description="Developed an innovative Augmented Reality (AR) configuration system for oil and gas Christmas trees during a summer internship. Using Meta Quest 3 headsets and Unity, we created an immersive and interactive experience for configuring complex equipment. The system features real-time visualization of changes, and integration with component specifications. This project aims to help the sales and configuration process, reducing misunderstandings and improving efficiency in the oil and gas industry."
                     technologies={['Unity', 'C#', 'Augmented Reality', 'Meta Quest 3']}
-                    link="https://github.com/yourusername/ar-christmas-tree-config"
                     image={`/ar-config-system.jpg`}
+                    confidential={true}
                 />
                 <ProjectItem
                     title="C++ Implementation of SAHI for High-Resolution Image Processing"
@@ -320,7 +333,7 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                 </p>
             </Section>
 
-            <Section title="Skills/ Buzzwords">
+            <Section title="Stuff I know (at least) decently well">
                 <div className="space-y-4">
                     <div>
                         <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming
@@ -358,8 +371,8 @@ function CV({ darkMode, showTimeline, setShowTimeline }) {
                 </div>
             </Section>
             {showTimeline && (
-                <Section title="Academic Timeline">
-                    <Timeline/>
+                <Section title="Academic Timeline" ref={timelineSectionRef}>
+                    <Timeline />
                 </Section>
             )}
         </div>
@@ -390,12 +403,12 @@ function Navigation() {
 
 function App() {
     const [darkMode, setDarkMode] = useState(() => {
-        // Initialize darkMode state from localStorage, defaulting to false if not set
         const savedMode = localStorage.getItem('darkMode');
         return savedMode !== null ? JSON.parse(savedMode) : false;
     });
     const [showTimeline, setShowTimeline] = useState(false);
     const [fadeIn, setFadeIn] = useState(false);
+    const timelineSectionRef = useRef(null);
 
     useEffect(() => {
         if (darkMode) {
@@ -403,7 +416,6 @@ function App() {
         } else {
             document.documentElement.classList.remove('dark');
         }
-        // Save the current preference to localStorage
         localStorage.setItem('darkMode', JSON.stringify(darkMode));
     }, [darkMode]);
 
@@ -416,11 +428,25 @@ function App() {
         setDarkMode(prevMode => !prevMode);
     };
 
+    const handleTimelineToggle = () => {
+        setShowTimeline(prev => !prev);
+    };
+
+    useEffect(() => {
+        if (showTimeline && timelineSectionRef.current) {
+            console.log('Timeline is now visible');
+            console.log('Timeline section ref:', timelineSectionRef.current);
+            setTimeout(() => {
+                timelineSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+                console.log('Scrolling to timeline section');
+            }, 100);
+        }
+    }, [showTimeline]);
+
     return (
         <Router>
-            <div
-                className={`min-h-screen py-16 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'} transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
-                <Navigation/>
+            <div className={`min-h-screen py-16 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'} transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
+                <Navigation />
                 <button
                     onClick={toggleDarkMode}
                     className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition duration-300"
@@ -428,13 +454,13 @@ function App() {
                     {darkMode ? '🌞' : '🌙'}
                 </button>
                 <button
-                    onClick={() => setShowTimeline(!showTimeline)}
+                    onClick={handleTimelineToggle}
                     className="fixed top-20 right-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white transition duration-300"
                 >
                     {showTimeline ? '📅' : '🗓️'}
                 </button>
                 <Routes>
-                    <Route path="/" element={<CV darkMode={darkMode} showTimeline={showTimeline} setShowTimeline={setShowTimeline} />} />
+                    <Route path="/" element={<CV darkMode={darkMode} showTimeline={showTimeline} setShowTimeline={setShowTimeline} timelineSectionRef={timelineSectionRef} />} />
                     <Route path="/blog" element={<BlogOverview />} />
                     <Route path="/blog/:id" element={<BlogPost />} />
                 </Routes>
