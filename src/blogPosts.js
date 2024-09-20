@@ -6,5 +6,12 @@ export const blogPosts = [
         summary: 'An exploration of implementing AlphaGo Zero for the game of HEX, discussing the challenges and insights gained.',
         content: () => import('./BlogPosts/AlphaGoZeroHex'),
     },
-    // Add more blog posts here
+    {
+        id: 'ar-neural-network',
+        title: 'Augmented Reality for understanding Neural Networks',
+        date: '2024-09-20',
+        summary: 'An innovative AR application visualizing neural networks in 3D, enabling real-time interaction and enhancing understanding of AI concepts.',
+        content: () => import('./BlogPosts/ARNeuralNetwork'),
+    },
+
 ];

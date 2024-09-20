@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import Timeline from './Timeline';
-import BlogOverview from './BlogOverview';
+import BlogList from './BlogList';
 import BlogPost from './BlogPost';
+import SkillsSection from './SkillsSection';
 
 
 const Section = React.forwardRef(({ title, children }, ref) => (
@@ -36,14 +37,6 @@ const ExperienceItem = ({ title, company, date, overview, highlights, technologi
             </div>
         )}
     </div>
-);
-
-const SkillList = ({ skills }) => (
-    <ul className="flex flex-wrap gap-2">
-        {skills.map((skill, index) => (
-            <li key={index} className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-sm">{skill}</li>
-        ))}
-    </ul>
 );
 
 const SocialLink = ({ href, icon, name }) => (
@@ -165,11 +158,11 @@ const ProjectsSection = ({ children }) => (
     </div>
 );
 
-
 function CV({ darkMode, showTimeline, setShowTimeline, timelineSectionRef  }) {
     return (
-        <div className="container mx-auto px-4 max-w-5xl">
-            <header className="mb-16 border-b pb-8 dark:border-gray-700">
+        <div className="mx-auto">
+            <div className="container mx-auto px-4 max-w-5xl">
+                <header className="mb-16 border-b pb-8 dark:border-gray-700">
                 <div className="flex items-center mb-6">
                     <img
                         src="/profile-picture.jpg"
@@ -280,6 +273,7 @@ function CV({ darkMode, showTimeline, setShowTimeline, timelineSectionRef  }) {
                     description={[]}
                 />
             </Section>
+            </div>
 
             <ProjectsSection>
                 <ProjectItem
@@ -301,7 +295,7 @@ function CV({ darkMode, showTimeline, setShowTimeline, timelineSectionRef  }) {
                     title="AlphaGo Zero for Hex"
                     description="Implemented a scaled-down version of the AlphaGo Zero system for the game of Hex. This project successfully adapted the groundbreaking self-play reinforcement learning approach to a different strategic board game. Key achievements include adapting the Monte Carlo Tree Search algorithm, designing a compact neural network for policy and value functions, implementing efficient self-play, and optimizing the architecture for Hex gameplay."
                     technologies={['Python', 'Pytorch(Lightning)', 'Monte Carlo Tree Search', 'Reinforcement Learning']}
-                    link="https://github.com/yourusername/alphago-zero-hex"
+                    link="https://github.com/Markuski2023/AlphaGO"
                     image={`/alphago-zero-hex.jpg`}
                 />
                 <ProjectItem
@@ -315,7 +309,7 @@ function CV({ darkMode, showTimeline, setShowTimeline, timelineSectionRef  }) {
                     title="C++ Implementation of SAHI for High-Resolution Image Processing"
                     description="Developed a C++ implementation of SAHI (Slicing Aided Hyper Inference), an advanced technique for processing high-resolution images in deep learning models. This project addressed the challenge of maintaining detail and accuracy when working with large images in object detection tasks. The implementation includes efficient image slicing, tile management, result aggregation, enabling the processing of high-resolution images without compromising on detail or accuracy."
                     technologies={['C++', 'Computer Vision', 'Deep Learning', 'Image Processing']}
-                    link="https://github.com/yourusername/sahi-cpp"
+                    link="https://github.com/Markuski2023/SAHI"
                     image={`/sahi-project.jpg`}
                 />
                 <ProjectItem
@@ -325,56 +319,29 @@ function CV({ darkMode, showTimeline, setShowTimeline, timelineSectionRef  }) {
                     link="https://github.com/yourusername/cpp-deep-learning-framework"
                     image={`/deep-learning-framework.jpg`}
                 />
+                <ProjectItem
+                    title="AR Application for Understanding Neural Networks"
+                    description="Developed an innovative Augmented Reality (AR) application designed to visualize and interact with neural networks in real-time. This educational tool allows users to build, train, and observe neural networks in an immersive 3D environment. Key features include the ability to add or remove layers, visualize data flow through the network and observe the training process in real-time. The application aims to bridge the gap between theoretical knowledge and practical understanding of neural network principles."
+                    technologies={['Unity', 'C#', 'AR Foundation', 'Machine Learning', 'Neural Networks', 'Augmented Reality']}
+                    link="https://github.com/Markuski2023/ARNNVisualizer"
+                    image={`/ar-neural-network.jpg`}
+                />
             </ProjectsSection>
 
+            <div className="container mx-auto px-4 max-w-5xl">
             <Section title="References">
                 <p className="mb-6 text-gray-700 dark:text-gray-300">
                     References will be provided upon request.
                 </p>
             </Section>
 
-            <Section title="Stuff I know (at least) decently well">
-                <div className="space-y-4">
-                    <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming
-                            Languages</h3>
-                        <SkillList skills={["Python", "C++", "C#", "SQL", "Java", "HTML/CSS"]}/>
-                    </div>
-                    <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Machine Learning /
-                            AI</h3>
-                        <SkillList
-                            skills={["Deep Learning", "Computer Vision", "Reinforcement Learning", "PyTorch", "Neural Networks", "Convolutional Neural Networks (CNN)", "Recurrent Neural Networks (RNN)", "Generative Adversarial Networks (GAN)", "Generative Pretrained Transformers (GPT)/ LLMs"]}/>
-                    </div>
-                    <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Data Science</h3>
-                        <SkillList
-                            skills={["Data Analysis", "Data Visualization", "Time Series Analysis", "Pandas", "NumPy", "Matplotlib"]}/>
-                    </div>
-                    <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Software
-                            Development</h3>
-                        <SkillList
-                            skills={["Git", "GitHub", "Agile Methodologies", "Object-Oriented Programming (OOP)", "RESTful APIs", "Software Testing"]}/>
-                    </div>
-                    <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Tools &
-                            Technologies</h3>
-                        <SkillList
-                            skills={["Unity", "ROS2", "OpenCV", "Linux", "Databricks", "Jupyter Notebooks", "Nvidia Jetson", "Meta Quest 3", "Augmented Reality (AR)", "CAD"]}/>
-                    </div>
-                    <div>
-                        <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Soft Skills</h3>
-                        <SkillList
-                            skills={["Team Leadership", "Project Management", "Technical Writing", "Problem Solving", "Collaboration", "Communication"]}/>
-                    </div>
-                </div>
-            </Section>
+            <SkillsSection />
             {showTimeline && (
                 <Section title="Academic Timeline" ref={timelineSectionRef}>
                     <Timeline />
                 </Section>
             )}
+        </div>
         </div>
     );
 }
@@ -461,7 +428,7 @@ function App() {
                 </button>
                 <Routes>
                     <Route path="/" element={<CV darkMode={darkMode} showTimeline={showTimeline} setShowTimeline={setShowTimeline} timelineSectionRef={timelineSectionRef} />} />
-                    <Route path="/blog" element={<BlogOverview />} />
+                    <Route path="/blog" element={<BlogList />} />
                     <Route path="/blog/:id" element={<BlogPost />} />
                 </Routes>
             </div>
