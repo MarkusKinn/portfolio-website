@@ -1,14 +1,24 @@
 import React from "react";
 
+const formatText = (text) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={index}>{part.slice(2, -2)}</strong>;
+        }
+        return part;
+    });
+};
+
 const ExperienceItem = ({ title, company, date, overview, highlights, technologies }) => (
     <div className="mb-8">
         <h3 className="text-xl font-normal text-gray-900 dark:text-gray-200">{title}</h3>
         <p className="text-sm text-gray-700 dark:text-gray-400 mb-2">{company} | {date}</p>
-        {overview && <p className="text-gray-800 dark:text-gray-300 text-sm mb-2">{overview}</p>}
+        {overview && <p className="text-gray-800 dark:text-gray-300 text-sm mb-2">{formatText(overview)}</p>}
         {highlights && highlights.length > 0 && (
             <ul className="list-disc list-inside text-gray-800 dark:text-gray-300 text-sm mb-2">
                 {highlights.map((item, index) => (
-                    <li key={index} className="mb-1">{item}</li>
+                    <li key={index} className="mb-1">{formatText(item)}</li>
                 ))}
             </ul>
         )}
