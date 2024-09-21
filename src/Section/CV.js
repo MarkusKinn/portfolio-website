@@ -1,5 +1,5 @@
 import SkillsSection from "./SkillsSection";
-import Timeline from "../Navigation/Timeline";
+import CourseSection from "./CourseSection";
 import React from "react";
 import Section from "./Section";
 import ProjectsSection from "./ProjectSection";
@@ -19,24 +19,24 @@ function CV({ showTimeline, timelineSectionRef }) {
                     animation: strongBlink 2s infinite;
                 }
             `}</style>
-            <div className="container mx-auto px-4 max-w-5xl">
+            <div className="container mx-auto px-4 max-w-6xl">
                 <header className="mb-16 border-b pb-8 dark:border-gray-700">
                     <div className="flex items-center mb-6">
                         <img
                             src="/profile-picture.jpg"
                             alt="Markus Kinn"
-                            className="w-24 h-24 rounded-full mr-6 object-cover"
+                            className="w-32 h-32 rounded-full mr-6 object-cover"
                         />
                         <div>
-                            <h1 className="text-4xl font-light mb-2 text-gray-900 dark:text-white">Markus Kinn</h1>
-                            <p className="text-xl text-gray-700 dark:text-gray-300">Master's Student in Informatics (AI)
+                            <h1 className="text-5xl font-light mb-2 text-gray-900 dark:text-white">Markus Kinn</h1>
+                            <p className="text-2xl text-gray-700 dark:text-gray-300">Master's Student in Informatics (AI)
                                 | Machine learning & Software Engineer</p>
                         </div>
                     </div>
-                    <p className="text-sm text-gray-700 dark:text-gray-400 mb-4">Trondheim, Norway |
+                    <p className="text-lg text-gray-700 dark:text-gray-400 mb-4">Trondheim, Norway |
                         markus.kinn@gmail.com | +47 473 41 615</p>
                     <div className="flex items-center justify-between">
-                        <div className="flex space-x-4">
+                        <div className="flex space-x-6">
                             <SocialLink
                                 href="https://www.linkedin.com/in/markuskinn/"
                                 icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linkedin.svg"
@@ -51,14 +51,14 @@ function CV({ showTimeline, timelineSectionRef }) {
                         <a
                             href={`/CV-Markus.pdf`}
                             download
-                            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none relative group"
+                            className="p-3 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none relative group"
                             aria-label="Download Resume"
                         >
                             <div className="absolute inset-0 bg-blue-400 dark:bg-blue-600 rounded-full opacity-75 group-hover:opacity-100 blink-glow"></div>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
+                                width="28"
+                                height="28"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -219,16 +219,14 @@ function CV({ showTimeline, timelineSectionRef }) {
                 />
             </ProjectsSection>
 
-            <div className="container mx-auto px-4 max-w-5xl">
-                <SkillsSection />
-                {showTimeline && (
-                    <Section title="Academic Timeline" ref={timelineSectionRef}>
-                        <Timeline />
-                    </Section>
-                )}
+            <div className="container mx-auto px-4 max-w-6xl">
+                <SkillsSection/>
+                <Section title="Academic CourseSection" ref={timelineSectionRef}>
+                    <CourseSection/>
+                </Section>
 
                 <Section title="References">
-                    <p className="mb-6 text-gray-700 dark:text-gray-300">
+                    <p className="mb-6 text-lg text-gray-700 dark:text-gray-300">
                         References will be provided upon request.
                     </p>
                 </Section>

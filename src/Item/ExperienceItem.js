@@ -12,11 +12,11 @@ const formatText = (text) => {
 
 const ExperienceItem = ({ title, company, date, overview, highlights, technologies }) => (
     <div className="mb-8">
-        <h3 className="text-xl font-normal text-gray-900 dark:text-gray-200">{title}</h3>
-        <p className="text-sm text-gray-700 dark:text-gray-400 mb-2">{company} | {date}</p>
-        {overview && <p className="text-gray-800 dark:text-gray-300 text-sm mb-2">{formatText(overview)}</p>}
+        <h3 className="text-2xl font-normal text-gray-900 dark:text-gray-200">{title}</h3>
+        <p className="text-m text-gray-700 dark:text-gray-400 mb-2">{company} | {date}</p>
+        {overview && <p className="text-gray-800 dark:text-gray-300 text-m mb-2">{formatText(overview)}</p>}
         {highlights && highlights.length > 0 && (
-            <ul className="list-disc list-inside text-gray-800 dark:text-gray-300 text-sm mb-2">
+            <ul className="list-disc list-inside text-gray-800 dark:text-gray-300 text-m mb-2">
                 {highlights.map((item, index) => (
                     <li key={index} className="mb-1">{formatText(item)}</li>
                 ))}

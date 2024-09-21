@@ -67,7 +67,6 @@ function App() {
                 <Navigation
                     darkMode={darkMode}
                     toggleDarkMode={toggleDarkMode}
-                    showTimeline={showTimeline}
                     handleTimelineToggle={handleTimelineToggle}
                 />
                 <main className={`flex-grow pt-16 transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>

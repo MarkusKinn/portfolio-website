@@ -52,7 +52,7 @@ const ProjectItem = ({ title, description, technologies, link, image, confidenti
             onClick={handleClick}
         >
             <div className="p-4">
-                <h3 className="text-xl font-normal text-gray-900 dark:text-gray-200 transition-colors duration-300">
+                <h3 className="text-2xl font-normal text-gray-900 dark:text-gray-200 transition-colors duration-300">
                     {title}
                 </h3>
                 <div
@@ -68,8 +68,8 @@ const ProjectItem = ({ title, description, technologies, link, image, confidenti
                     <div className={`transition-opacity duration-300 ease-in-out ${showContent ? 'opacity-100' : 'opacity-0'}`}>
                         {showContent && (
                             <>
-                                <p className="text-sm text-gray-800 dark:text-gray-400 mb-2">{description}</p>
-                                <p className="text-sm text-gray-700 dark:text-gray-500 mb-2">
+                                <p className="text-xl text-gray-800 dark:text-gray-400 mb-2">{description}</p>
+                                <p className="text-m text-gray-700 dark:text-gray-500 mb-2">
                                     Technologies: {technologies.join(', ')}
                                 </p>
                                 {confidential ? (

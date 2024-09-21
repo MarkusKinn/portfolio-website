@@ -10,17 +10,6 @@ function Navigation({ darkMode, toggleDarkMode, showTimeline, handleTimelineTogg
         <nav className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    <div className="w-1/3 flex justify-start">
-                        {isHomePage && (
-                            <button
-                                onClick={handleTimelineToggle}
-                                className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium flex items-center"
-                                aria-label={showTimeline ? "Hide Timeline" : "Show Timeline"}
-                            >
-                                {showTimeline ? '🗓️ Hide Timeline' : '📅 Show Timeline'}
-                            </button>
-                        )}
-                    </div>
                     <div className="w-1/3 flex justify-center">
                         {/* Center content if needed */}
                     </div>
