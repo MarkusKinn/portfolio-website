@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 function Navigation({ darkMode, toggleDarkMode, showTimeline, handleTimelineToggle }) {
     const location = useLocation();
-    const isHomePage = location.pathname === '/';
     const isBlogPage = location.pathname === '/blog' || location.pathname.startsWith('/blog/');
 
     return (
