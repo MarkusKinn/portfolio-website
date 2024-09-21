@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 
-const ProjectItem = ({ title, description, technologies, link, image, confidential = false }) => {
+const ProjectItem = ({ title, description, technologies, link, image, confidential = false, codeLost = false }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isHorizontallyExpanded, setIsHorizontallyExpanded] = useState(false);
     const [isVerticallyExpanded, setIsVerticallyExpanded] = useState(false);
@@ -74,6 +74,8 @@ const ProjectItem = ({ title, description, technologies, link, image, confidenti
                                 </p>
                                 {confidential ? (
                                     <p className="text-sm text-red-600 font-semibold">Confidential</p>
+                                ) : codeLost ? (
+                                    <p className="text-sm text-yellow-600 font-semibold">Code Lost</p>
                                 ) : link ? (
                                     <a
                                         href={link}

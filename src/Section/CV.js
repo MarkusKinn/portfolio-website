@@ -165,6 +165,7 @@ function CV({ showTimeline, timelineSectionRef }) {
                     technologies={['Python', 'PyTorch', 'Computer Vision', 'Deep Learning']}
                     link="https://github.com/yourusername/yolov3-from-scratch"
                     image={`/logo.svg`}
+                    codeLost={true}
                 />
                 <ProjectItem
                     title="AlphaGo Zero for Hex"
@@ -193,6 +194,7 @@ function CV({ showTimeline, timelineSectionRef }) {
                     technologies={['C++', 'Deep Learning', 'Neural Networks', 'Backpropagation', 'Optimization Algorithms']}
                     link="https://github.com/yourusername/cpp-deep-learning-framework"
                     image={`/deep-learning-framework.jpg`}
+                    codeLost={true}
                 />
                 <ProjectItem
                     title="AR Application for Understanding Neural Networks"
@@ -207,6 +209,13 @@ function CV({ showTimeline, timelineSectionRef }) {
                     technologies={['Python', 'Django', 'REST APIs', 'PostgreSQL', 'React', 'Docker', 'Celery', 'Redis', 'AWS']}
                     link="https://github.com/Markuski2023/HomeworkManagement"
                     image={`/homework-management-tool.jpg`}
+                />
+                <ProjectItem
+                    title="Interactive Portfolio Website"
+                    description="Designed and developed a dynamic, responsive portfolio website to showcase my projects, skills, and professional experience. This modern web application features a clean, user-friendly interface with dark mode support, an interactive timeline of academic achievements, and a built-in blog system. Key features include a customizable project showcase, an detailed CV section with expandable items, and seamless integration with external platforms like GitHub and LinkedIn."
+                    technologies={['React', 'JavaScript', 'Tailwind CSS', 'Responsive Design', 'GitHub']}
+                    link="https://github.com/Markuski2023/portfolio-website"
+                    image={`/portfolio-website-screenshot.jpg`}
                 />
             </ProjectsSection>
 
