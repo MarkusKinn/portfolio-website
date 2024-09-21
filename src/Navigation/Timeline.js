@@ -84,6 +84,25 @@ const Timeline = () => {
         ? groupCoursesBySemester(courses)
         : groupCoursesByType(courses);
 
+    const renderCourse = (course) => (
+        <div
+            key={course.id}
+            className={`mb-4 p-4 rounded-lg shadow-lg ${getTermColor(course.term)} cursor-pointer transition-all duration-300 hover:shadow-xl`}
+            onMouseEnter={() => setSelectedCourse(course)}
+            onMouseLeave={() => setSelectedCourse(null)}
+        >
+            <h4 className="font-semibold text-gray-900">{course.name}</h4>
+            <p className="text-sm text-gray-600">{course.code}</p>
+            {showGrades && (
+                <div className="mt-2 flex justify-between items-center">
+                    <span className={`px-2 py-1 rounded-full text-white text-sm ${getGradeColor(course.grade)}`}>
+                        {course.grade}
+                    </span>
+                </div>
+            )}
+        </div>
+    );
+
     return (
         <div className="container mx-auto p-4">
             <div className="mb-4 flex justify-center space-x-4">
@@ -100,34 +119,15 @@ const Timeline = () => {
                     Order by {orderBy === 'chronological' ? 'Type' : 'Chronological'}
                 </button>
             </div>
-            <div className="relative">
+            <div className={`relative ${orderBy === 'type' ? 'flex flex-wrap -mx-2' : ''}`}>
                 {groupedCourses.map(([groupName, groupCourses], groupIndex) => (
-                    <div key={groupName} className={`mb-16 ${groupIndex % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} flex`}>
-                        <div className={`w-1/4 ${groupIndex % 2 === 0 ? 'text-right pr-4' : 'text-left pl-4'}`}>
-                            <h3 className="text-xl font-semibold mb-2">{groupName}</h3>
-                        </div>
-                        <div className="w-3/4 relative">
-                            <div className={`absolute top-0 bottom-0 ${groupIndex % 2 === 0 ? 'left-0' : 'right-0'} w-1 bg-gray-300`}></div>
-                            {groupCourses.map((course, index) => (
-                                <div
-                                    key={course.id}
-                                    className={`mb-4 ${groupIndex % 2 === 0 ? 'ml-4' : 'mr-4'}`}
-                                    onMouseEnter={() => setSelectedCourse(course)}
-                                    onMouseLeave={() => setSelectedCourse(null)}
-                                >
-                                    <div className={`p-4 rounded-lg shadow-lg ${getTermColor(course.term)} cursor-pointer transition-all duration-300 hover:shadow-xl`}>
-                                        <h4 className="font-semibold text-gray-900">{course.name}</h4>
-                                        <p className="text-sm text-gray-600">{course.code}</p>
-                                        {showGrades && (
-                                            <div className="mt-2 flex justify-between items-center">
-                        <span className={`px-2 py-1 rounded-full text-white text-sm ${getGradeColor(course.grade)}`}>
-                          {course.grade}
-                        </span>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
+                    <div key={groupName} className={orderBy === 'type' ? 'w-1/3 px-2 mb-4' : 'mb-16'}>
+                        <h3 className="text-xl font-semibold mb-2">{groupName}</h3>
+                        <div className={orderBy === 'type' ? '' : 'relative'}>
+                            {orderBy !== 'type' && (
+                                <div className={`absolute top-0 bottom-0 ${groupIndex % 2 === 0 ? 'left-0' : 'right-0'} w-1 bg-gray-300`}></div>
+                            )}
+                            {groupCourses.map(renderCourse)}
                         </div>
                     </div>
                 ))}
@@ -139,9 +139,7 @@ const Timeline = () => {
                     <p className="text-gray-700 dark:text-gray-300">Term: {selectedCourse.term}</p>
                     <p className="text-gray-700 dark:text-gray-300">Credits: {selectedCourse.credits}</p>
                     {showGrades && (
-                        <>
-                            <p className="text-gray-700 dark:text-gray-300">Grade: {selectedCourse.grade}</p>
-                        </>
+                        <p className="text-gray-700 dark:text-gray-300">Grade: {selectedCourse.grade}</p>
                     )}
                     <p className="text-gray-700 dark:text-gray-300">Type: {selectedCourse.type}</p>
                 </div>

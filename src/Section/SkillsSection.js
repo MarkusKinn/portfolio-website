@@ -63,44 +63,45 @@ const SkillsSection = () => (
             <div>
                 <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming Languages</h3>
                 <SkillList skills={[
-                    { name: "Python", rating: 5 },
-                    { name: "C++", rating: 2 },
+                    { name: "Python", rating: 4 },
                     { name: "C#", rating: 4 },
                     { name: "SQL", rating: 3 },
                     { name: "Java", rating: 3 },
-                    { name: "HTML/CSS", rating: 3 }
+                    { name: "HTML/CSS", rating: 3 },
+                    { name: "JS", rating: 3 },
+                    { name: "C++", rating: 2 },
                 ]} />
             </div>
             <div>
                 <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Machine Learning / AI</h3>
                 <SkillList skills={[
-                    { name: "Deep Learning", rating: 5 },
-                    { name: "Computer Vision", rating: 5 },
+                    { name: "Deep Learning", rating: 4 },
+                    { name: "Computer Vision", rating: 4 },
                     { name: "Reinforcement Learning", rating: 4 },
                     { name: "PyTorch", rating: 4 },
-                    { name: "Neural Networks", rating: 5 },
-                    { name: "Convolutional Neural Networks (CNN)", rating: 5 },
+                    { name: "Neural Networks", rating: 4 },
+                    { name: "Convolutional Neural Networks (CNN)", rating: 4 },
                     { name: "Recurrent Neural Networks (RNN)", rating: 4 },
                     { name: "Generative Adversarial Networks (GAN)", rating: 4 },
-                    { name: "Generative Pretrained Transformers (GPT)/ LLMs", rating: 5 }
+                    { name: "Generative Pretrained Transformers (GPT)/ LLMs", rating: 4 }
                 ]} />
             </div>
             <div>
                 <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Data Science</h3>
                 <SkillList skills={[
-                    { name: "Data Analysis", rating: 4 },
+                    { name: "Data Analysis", rating: 3 },
                     { name: "Data Visualization", rating: 3 },
                     { name: "Time Series Analysis", rating: 3 },
-                    { name: "Pandas", rating: 4 },
-                    { name: "NumPy", rating: 4 },
+                    { name: "Pandas", rating: 3 },
+                    { name: "NumPy", rating: 3 },
                     { name: "Matplotlib", rating: 3 }
                 ]} />
             </div>
             <div>
                 <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Software Development</h3>
                 <SkillList skills={[
-                    { name: "Git", rating: 4 },
-                    { name: "GitHub", rating: 4 },
+                    { name: "Git", rating: 3 },
+                    { name: "GitHub", rating: 3 },
                     { name: "Object-Oriented Programming (OOP)", rating: 5 },
                     { name: "Software Testing", rating: 3 }
                 ]} />
@@ -108,12 +109,12 @@ const SkillsSection = () => (
             <div>
                 <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Tools & Technologies</h3>
                 <SkillList skills={[
-                    { name: "Unity", rating: 4 },
-                    { name: "ROS2", rating: 3 },
-                    { name: "OpenCV", rating: 4 },
+                    { name: "Unity", rating: 3 },
+                    { name: "ROS2", rating: 2 },
+                    { name: "OpenCV", rating: 3 },
                     { name: "Linux", rating: 3 },
                     { name: "Databricks", rating: 3 },
-                    { name: "Jupyter Notebooks", rating: 4 },
+                    { name: "Jupyter Notebooks", rating: 5 },
                     { name: "Nvidia Jetson", rating: 3 },
                     { name: "Meta Quest 3", rating: 4 },
                     { name: "Augmented Reality (AR)", rating: 5 },
