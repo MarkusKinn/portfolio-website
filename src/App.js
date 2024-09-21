@@ -158,47 +158,73 @@ const ProjectsSection = ({ children }) => (
     </div>
 );
 
-function CV({ darkMode, showTimeline, setShowTimeline, timelineSectionRef  }) {
+function CV({ showTimeline, timelineSectionRef }) {
     return (
         <div className="mx-auto">
+            <style jsx>{`
+                @keyframes strongBlink {
+                    0%, 100% { opacity: 0.1; }
+                    50% { opacity: 1; }
+                }
+                .blink-glow {
+                    animation: strongBlink 2s infinite;
+                }
+            `}</style>
             <div className="container mx-auto px-4 max-w-5xl">
                 <header className="mb-16 border-b pb-8 dark:border-gray-700">
-                <div className="flex items-center mb-6">
-                    <img
-                        src="/profile-picture.jpg"
-                        alt="Markus Kinn"
-                        className="w-24 h-24 rounded-full mr-6 object-cover"
-                    />
-                    <div>
-                        <h1 className="text-4xl font-light mb-2 text-gray-900 dark:text-white">Markus Kinn</h1>
-                        <p className="text-xl text-gray-700 dark:text-gray-300">Master's Student in Informatics (AI)
-                            | Machine learning & Software Engineer</p>
-                    </div>
-                </div>
-                <p className="text-sm text-gray-700 dark:text-gray-400 mb-4">Trondheim, Norway |
-                    markus.kinn@gmail.com | +47 473 41 615</p>
-                <div className="flex items-center justify-between">
-                    <div className="flex space-x-4">
-                        <SocialLink
-                            href="https://www.linkedin.com/in/markuskinn/"
-                            icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linkedin.svg"
-                            name="LinkedIn"
+                    <div className="flex items-center mb-6">
+                        <img
+                            src="/profile-picture.jpg"
+                            alt="Markus Kinn"
+                            className="w-24 h-24 rounded-full mr-6 object-cover"
                         />
-                        <SocialLink
-                            href="https://github.com/Markuski2023"
-                            icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg"
-                            name="GitHub"
-                        />
+                        <div>
+                            <h1 className="text-4xl font-light mb-2 text-gray-900 dark:text-white">Markus Kinn</h1>
+                            <p className="text-xl text-gray-700 dark:text-gray-300">Master's Student in Informatics (AI)
+                                | Machine learning & Software Engineer</p>
+                        </div>
                     </div>
-                    <a
-                        href={`/CV-Markus.pdf`}
-                        download
-                        className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-                    >
-                        Download Resume
-                    </a>
-                </div>
-            </header>
+                    <p className="text-sm text-gray-700 dark:text-gray-400 mb-4">Trondheim, Norway |
+                        markus.kinn@gmail.com | +47 473 41 615</p>
+                    <div className="flex items-center justify-between">
+                        <div className="flex space-x-4">
+                            <SocialLink
+                                href="https://www.linkedin.com/in/markuskinn/"
+                                icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linkedin.svg"
+                                name="LinkedIn"
+                            />
+                            <SocialLink
+                                href="https://github.com/Markuski2023"
+                                icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg"
+                                name="GitHub"
+                            />
+                        </div>
+                        <a
+                            href={`/CV-Markus.pdf`}
+                            download
+                            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none relative group"
+                            aria-label="Download Resume"
+                        >
+                            <div className="absolute inset-0 bg-blue-400 dark:bg-blue-600 rounded-full opacity-75 group-hover:opacity-100 blink-glow"></div>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="relative z-10 text-gray-800 dark:text-white"
+                            >
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </header>
 
             <Section title="Experience">
                 <ExperienceItem

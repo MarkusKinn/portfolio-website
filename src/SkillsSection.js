@@ -64,9 +64,9 @@ const SkillsSection = () => (
                 <h3 className="text-lg font-normal mb-2 text-gray-900 dark:text-gray-200">Programming Languages</h3>
                 <SkillList skills={[
                     { name: "Python", rating: 5 },
-                    { name: "C++", rating: 3 },
+                    { name: "C++", rating: 2 },
                     { name: "C#", rating: 4 },
-                    { name: "SQL", rating: 4 },
+                    { name: "SQL", rating: 3 },
                     { name: "Java", rating: 3 },
                     { name: "HTML/CSS", rating: 3 }
                 ]} />
