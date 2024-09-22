@@ -7,7 +7,7 @@ import ProjectItem from "../Item/ProjectItem";
 import ExperienceItem from "../Item/ExperienceItem";
 import SocialLink from "../Navigation/SocialLink";
 
-function CV({ showTimeline, timelineSectionRef }) {
+function CV({ timelineSectionRef }) {
     return (
         <div className="mx-auto">
             <style jsx>{`
@@ -43,7 +43,7 @@ function CV({ showTimeline, timelineSectionRef }) {
                                 name="LinkedIn"
                             />
                             <SocialLink
-                                href="https://github.com/Markuski2023"
+                                href="https://github.com/MarkusKinn"
                                 icon="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg"
                                 name="GitHub"
                             />
@@ -171,7 +171,7 @@ function CV({ showTimeline, timelineSectionRef }) {
                     title="AlphaGo Zero for Hex"
                     description="Implemented a scaled-down version of the AlphaGo Zero system for the game of Hex. This project successfully adapted the groundbreaking self-play reinforcement learning approach to a different strategic board game. Key achievements include adapting the Monte Carlo Tree Search algorithm, designing a compact neural network for policy and value functions, implementing efficient self-play, and optimizing the architecture for Hex gameplay."
                     technologies={['Python', 'Pytorch(Lightning)', 'Monte Carlo Tree Search', 'Reinforcement Learning']}
-                    link="https://github.com/Markuski2023/AlphaGO"
+                    link="https://github.com/MarkusKinn/AlphaGO"
                     image={`/alphago-zero-hex.jpg`}
                 />
                 <ProjectItem
@@ -185,7 +185,7 @@ function CV({ showTimeline, timelineSectionRef }) {
                     title="C++ Implementation of SAHI for High-Resolution Image Processing"
                     description="Developed a C++ implementation of SAHI (Slicing Aided Hyper Inference), an advanced technique for processing high-resolution images in deep learning models. This project addressed the challenge of maintaining detail and accuracy when working with large images in object detection tasks. The implementation includes efficient image slicing, tile management, result aggregation, enabling the processing of high-resolution images without compromising on detail or accuracy."
                     technologies={['C++', 'Computer Vision', 'Deep Learning', 'Image Processing']}
-                    link="https://github.com/Markuski2023/SAHI"
+                    link="https://github.com/MarkusKinn/SAHI"
                     image={`/sahi-project.jpg`}
                 />
                 <ProjectItem
@@ -200,7 +200,7 @@ function CV({ showTimeline, timelineSectionRef }) {
                     title="AR Application for Understanding Neural Networks"
                     description="Developed an innovative Augmented Reality (AR) application designed to visualize and interact with neural networks in real-time. This educational tool allows users to build, train, and observe neural networks in an immersive 3D environment. Key features include the ability to add or remove layers, visualize data flow through the network and observe the training process in real-time. The application aims to bridge the gap between theoretical knowledge and practical understanding of neural network principles."
                     technologies={['Unity', 'C#', 'AR Foundation', 'Machine Learning', 'Neural Networks', 'Augmented Reality']}
-                    link="https://github.com/Markuski2023/ARNNVisualizer"
+                    link="https://github.com/MarkusKinn/ARNNVisualizer"
                     image={`/ar-neural-network.jpg`}
                 />
                 <ProjectItem
@@ -214,7 +214,7 @@ function CV({ showTimeline, timelineSectionRef }) {
                     title="Interactive Portfolio Website"
                     description="Designed and developed a dynamic, responsive portfolio website to showcase my projects, skills, and professional experience. This modern web application features a clean, user-friendly interface with dark mode support, an interactive timeline of academic achievements, and a built-in blog system. Key features include a customizable project showcase, an detailed CV section with expandable items, and seamless integration with external platforms like GitHub and LinkedIn."
                     technologies={['React', 'JavaScript', 'Tailwind CSS', 'Responsive Design', 'GitHub']}
-                    link="https://github.com/Markuski2023/portfolio-website"
+                    link="https://github.com/MarkusKinn/portfolio-website"
                     image={`/portfolio-website-screenshot.jpg`}
                 />
             </ProjectsSection>
