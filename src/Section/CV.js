@@ -152,70 +152,76 @@ function CV({ timelineSectionRef }) {
 
             <ProjectsSection>
                 <ProjectItem
+                    id="1"
                     title="Automated Foreign Object Debris Detection for Airfields"
                     description="Collaborated with three fellow students and industry partners Avinor and Kongsberg Gruppen on an innovative bachelor project to develop an automated Foreign Object Debris (FOD) detection system. The project utilized high-quality 360-degree video streams from the Remote Tower System to enhance airport safety. Key achievements included testing and validating real-time computer vision algorithms for FOD detection and processing high-resolution 360-degree video streams."
                     technologies={['Computer Vision', 'Machine Learning', 'Python', 'OpenCV', 'Pytorch']}
                     link="https://github.com/yourusername/fod-detection-project"
-                    image={`/fod-detection-project.jpg`}
                     confidential={true}
                 />
                 <ProjectItem
+                    id="2"
                     title="YOLOv3 Implementation from Scratch"
                     description="Implemented the YOLOv3 (You Only Look Once version 3) object detection algorithm from scratch in Python. This project involved a deep dive into advanced computer vision techniques and neural network architectures, including building the complex YOLOv3 neural network architecture, implementing the anchor box system and unique grid-based detection approach, and the loss function. The implementation was optimized for performance and validated against established benchmarks."
                     technologies={['Python', 'PyTorch', 'Computer Vision', 'Deep Learning']}
                     link="https://github.com/yourusername/yolov3-from-scratch"
-                    image={`/logo.svg`}
+                    image={`/yolov3.jpg`}
                     codeLost={true}
                 />
                 <ProjectItem
+                    id="3"
                     title="AlphaGo Zero for Hex"
                     description="Implemented a scaled-down version of the AlphaGo Zero system for the game of Hex. This project successfully adapted the groundbreaking self-play reinforcement learning approach to a different strategic board game. Key achievements include adapting the Monte Carlo Tree Search algorithm, designing a compact neural network for policy and value functions, implementing efficient self-play, and optimizing the architecture for Hex gameplay."
                     technologies={['Python', 'Pytorch(Lightning)', 'Monte Carlo Tree Search', 'Reinforcement Learning']}
                     link="https://github.com/MarkusKinn/AlphaGO"
-                    image={`/alphago-zero-hex.jpg`}
+                    image={`/alphago.jpg`}
+                    blogPostId="alphago-zero-hex"
                 />
                 <ProjectItem
+                    id="4"
                     title="AR Configuration System for Oil & Gas Christmas Trees"
                     description="Developed an innovative Augmented Reality (AR) configuration system for oil and gas Christmas trees during a summer internship. Using Meta Quest 3 headsets and Unity, we created an immersive and interactive experience for configuring complex equipment. The system features real-time visualization of changes, and integration with component specifications. This project aims to help the sales and configuration process, reducing misunderstandings and improving efficiency in the oil and gas industry."
                     technologies={['Unity', 'C#', 'Augmented Reality', 'Meta Quest 3']}
-                    image={`/ar-config-system.jpg`}
                     confidential={true}
                 />
                 <ProjectItem
+                    id="5"
                     title="C++ Implementation of SAHI for High-Resolution Image Processing"
                     description="Developed a C++ implementation of SAHI (Slicing Aided Hyper Inference), an advanced technique for processing high-resolution images in deep learning models. This project addressed the challenge of maintaining detail and accuracy when working with large images in object detection tasks. The implementation includes efficient image slicing, tile management, result aggregation, enabling the processing of high-resolution images without compromising on detail or accuracy."
                     technologies={['C++', 'Computer Vision', 'Deep Learning', 'Image Processing']}
                     link="https://github.com/MarkusKinn/SAHI"
-                    image={`/sahi-project.jpg`}
+                    image={`/sahi.png`}
+                    blogPostId="sahi-object-detection"
                 />
                 <ProjectItem
+                    id="6"
                     title="Basic Deep Learning Framework in C++"
                     description="Developed a basic deep learning framework from scratch in C++, implementing core components such as neural network architectures, backpropagation, optimization algorithms, and loss functions. This project demonstrated a comprehensive understanding of neural network principles and advanced C++ programming, serving as both a learning tool and a showcase of technical skills in deep learning and software development."
                     technologies={['C++', 'Deep Learning', 'Neural Networks', 'Backpropagation', 'Optimization Algorithms']}
                     link="https://github.com/yourusername/cpp-deep-learning-framework"
-                    image={`/deep-learning-framework.jpg`}
                     codeLost={true}
                 />
                 <ProjectItem
+                    id="7"
                     title="AR Application for Understanding Neural Networks"
                     description="Developed an innovative Augmented Reality (AR) application designed to visualize and interact with neural networks in real-time. This educational tool allows users to build, train, and observe neural networks in an immersive 3D environment. Key features include the ability to add or remove layers, visualize data flow through the network and observe the training process in real-time. The application aims to bridge the gap between theoretical knowledge and practical understanding of neural network principles."
                     technologies={['Unity', 'C#', 'AR Foundation', 'Machine Learning', 'Neural Networks', 'Augmented Reality']}
                     link="https://github.com/MarkusKinn/ARNNVisualizer"
-                    image={`/ar-neural-network.jpg`}
+                    blogPostId="ar-neural-network"
                 />
                 <ProjectItem
+                    id="8"
                     title="Homework Management Tool (Canvas Replacement)"
                     description="Developed a comprehensive homework management system as an alternative to Canvas, designed to streamline academic workflows for both students and educators. This tool integrates seamlessly with various educational APIs to provide a centralized platform for assignment tracking, submission, and grading. Key features include automated deadline reminders, customizable course organization, real-time grade calculations, and an intuitive interface for managing multiple classes and projects simultaneously."
                     technologies={['Python', 'Django', 'REST APIs', 'SQLite']}
                     link="https://github.com/Markuski2023/HomeworkManagement"
-                    image={`/homework-management-tool.jpg`}
                 />
                 <ProjectItem
+                    id="9"
                     title="Interactive Portfolio Website"
                     description="Designed and developed a dynamic, responsive portfolio website to showcase my projects, skills, and professional experience. This modern web application features a clean, user-friendly interface with dark mode support, an interactive timeline of academic achievements, and a built-in blog system. Key features include a customizable project showcase, an detailed CV section with expandable items, and seamless integration with external platforms like GitHub and LinkedIn."
                     technologies={['React', 'JavaScript', 'Tailwind CSS', 'Responsive Design', 'GitHub']}
                     link="https://github.com/MarkusKinn/portfolio-website"
-                    image={`/portfolio-website-screenshot.jpg`}
                 />
             </ProjectsSection>
 

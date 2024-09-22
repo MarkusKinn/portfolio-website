@@ -13,5 +13,12 @@ export const blogPosts = [
         summary: 'An innovative AR application visualizing neural networks in 3D, enabling real-time interaction and enhancing understanding of AI concepts.',
         content: () => import('./BlogPosts/ARNeuralNetwork'),
     },
+    {
+        id: 'sahi-object-detection',
+        title: 'SAHI: Revolutionizing Small Object Detection',
+        date: '2024-09-22',
+        summary: 'An exploration of Slicing Aided Hyper Inference (SAHI), a cutting-edge technique that enhances object detection in large images by intelligently processing image slices and combining results.',
+        content: () => import('./BlogPosts/SAHI'),
+    },
 
 ];

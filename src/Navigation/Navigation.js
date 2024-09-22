@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Navigation({ darkMode, toggleDarkMode, showTimeline, handleTimelineToggle }) {
+function Navigation({ darkMode, toggleDarkMode }) {
     const location = useLocation();
     const isBlogPage = location.pathname === '/blog' || location.pathname.startsWith('/blog/');
 
