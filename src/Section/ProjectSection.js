@@ -4,7 +4,7 @@ import {ProjectProvider} from "../Item/ProjectItem";
 const ProjectsSection = ({ children }) => (
     <ProjectProvider>
         <div className="w-full py-16">
-            <div className="max-w-[90%] mx-auto px-4">
+            <div className="mx-auto">
                 <h2 className="text-2xl font-light mb-6 text-gray-900 dark:text-gray-200 uppercase tracking-wider">
                     Projects
                 </h2>
