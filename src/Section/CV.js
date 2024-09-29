@@ -137,7 +137,7 @@ function CV({ timelineSectionRef }) {
                     <ProjectItem
                         id="8"
                         title="Homework Management Tool (Canvas Replacement)"
-                        description="Developed a comprehensive homework management system as an alternative to Canvas, designed to streamline academic workflows for both students and educators. This tool integrates seamlessly with various educational APIs to provide a centralized platform for assignment tracking, submission, and grading. Key features include automated deadline reminders, customizable course organization, real-time grade calculations, and an intuitive interface for managing multiple classes and projects simultaneously."
+                        description="Developed a comprehensive homework management system as an alternative to Canvas, designed to streamline academic workflows for students. This tool integrates seamlessly with various educational APIs to provide a centralized platform for assignment tracking, submission, and grading. Key features include automated deadline reminders, customizable course organization, real-time grade calculations, and an intuitive interface for managing multiple classes and projects simultaneously."
                         technologies={['Python', 'Django', 'REST APIs', 'SQLite']}
                         link="https://github.com/Markuski2023/HomeworkManagement"
                     />
